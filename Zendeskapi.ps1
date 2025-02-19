@@ -1,7 +1,7 @@
 ﻿#Enter the API Token from Zendesk Admin. Email is used for authentication. 
 #Token left blank for security reasons. Can be accessed in Zendesk Admin under Integration
 $zendeskApiToken = ""
-$email = "patrickmedley@mtech-systems.com"
+$email = "youremail@mtech-systems.com"
 $authString = "$($email)/token:$($zendeskApiToken)"
 $base64AuthString = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($authString))
 

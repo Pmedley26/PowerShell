@@ -1,5 +1,6 @@
-﻿#Enter the API Token from Zendesk Admin. Email is used or authentication. 
-$zendeskApiToken = "Zh2eZh6fNagdM9FM6eqSMntfrkfi79DheXZ90IU6"
+﻿#Enter the API Token from Zendesk Admin. Email is used for authentication. 
+#Token left blank for security reasons. Can be accessed in Zendesk Admin under Integration
+$zendeskApiToken = ""
 $email = "patrickmedley@mtech-systems.com"
 $authString = "$($email)/token:$($zendeskApiToken)"
 $base64AuthString = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($authString))
@@ -19,7 +20,7 @@ $body = @{
 }
 } | Convertto-Json
 
-$response = Invoke-RestMethod -Uri "https://mtechsupport.zendesk.com/api/v2/users.json" -Method Post -Headers $headers -Body $body
+$response = Invoke-RestMethod -Uri "https://your-domain.zendesk.com/api/v2/users.json" -Method Post -Headers $headers -Body $body
 $ZendeskUserId = $response.user.id
 
 #Assign the user the Contributor Role 
@@ -28,4 +29,4 @@ $body = @{
 "role" = "contributor"
 } | Convertto-Json
 
-Invoke-RestMethod -Uri "https://mtechsupport.zendesk.com/api/v2/users/$ZendeskUserId.json" -Method Put -Headers $headers -Body $body
+Invoke-RestMethod -Uri "https://your-domain.zendesk.com/api/v2/users/$ZendeskUserId.json" -Method Put -Headers $headers -Body $body

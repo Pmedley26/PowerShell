@@ -45,7 +45,7 @@ $i++
 }
 
 Add-Type -AssemblyName 'System.Web'
-$password = [System.Web.Security.Membership]::GeneratePassword((Get-Random -Minimum 10 -Maximum 25), 3)
+$password = [System.Web.Security.Membership]::GeneratePassword((Get-Random -Minimum 10 -Maximum 16), 3)
 $secPW = ConvertTo-SecureString -String $password -AsPlainText -Force
 
 $NewUser = @{
@@ -107,5 +107,6 @@ Write-Warning "Failed to add user to group '$group'. Error: $($_.Exception.Messa
 }
 
 }
+
 
 
